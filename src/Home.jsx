@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 30px;
+  overflow: auto;
 `;
 
 const ImgWrapper = styled.img`
@@ -24,8 +25,6 @@ const ImgWrapper = styled.img`
 `;
 
 const GuestList = styled.div`
-  width: 100%;
-
   div {
     margin: 2px;
   }
@@ -35,7 +34,7 @@ const GameSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 
 const SecretSanta = styled.div`
@@ -103,7 +102,7 @@ export default () => {
           onClick={() => pair(guestList)}
           startIcon={<CardGiftcard />}
         >
-          Secret Santa
+          Swap Gift
         </Button>
         <SecretSanta>
           {pairs.map((obj) => (
