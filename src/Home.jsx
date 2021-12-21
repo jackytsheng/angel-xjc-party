@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import piggy from './assets/piggy.jpeg';
-import { Chip, Button } from '@mui/material';
+import { Chip, Button, IconButton } from '@mui/material';
 import CardGiftcard from '@mui/icons-material/CardGiftcard';
+import DeleteIcon from '@mui/icons-material/DeleteOutline';
 
 const Wrapper = styled.div`
   background-color: #f5f5f5;
@@ -43,6 +44,12 @@ const SecretSanta = styled.div`
   div {
     margin: 2px;
   }
+`;
+
+const ButtonGroup = styled.div`
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const guestList = [
@@ -97,13 +104,22 @@ export default () => {
         ))}
       </GuestList>
       <GameSection>
-        <Button
-          variant='outlined'
-          onClick={() => pair(guestList)}
-          startIcon={<CardGiftcard />}
-        >
-          Swap Gift
-        </Button>
+        <ButtonGroup>
+          <Button
+            variant='outlined'
+            onClick={() => pair(guestList)}
+            startIcon={<CardGiftcard />}
+          >
+            Swap Gift
+          </Button>
+          <IconButton
+            color='primary'
+            aria-label='delete list'
+            onClick={() => setPairs([])}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </ButtonGroup>
         <SecretSanta>
           {pairs.map((obj) => (
             <Chip
