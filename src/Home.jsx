@@ -55,24 +55,25 @@ const InputGroup = styled.div`
 `;
 
 const rouletteData = [
-  '喝酒',
-  '喝酒',
-  '喝酒',
+  '1. 喝酒',
+  '2. 喝酒',
+  '3. 喝酒',
   '指定一个人',
-  '喝酒',
-  '喝酒',
-  '喝酒',
+  '4. 喝酒',
+  '5. 喝酒',
+  '6. 喝酒',
   '指定一个人',
-  '喝酒',
-  '喝酒',
-  '喝酒',
+  '7. 喝酒',
+  '8. 喝酒',
+  '9. 喝酒',
   '指定一个人',
-  '喝酒',
-  '喝酒',
-  '喝酒',
+  '10. 喝酒',
+  '11. 喝酒',
+  '12. 喝酒',
   '指定一个人',
-  '喝酒',
-  '喝酒',
+  '13. 喝酒',
+  '14. 喝酒',
+  '15. 喝酒',
   '指定一个人',
 ];
 
@@ -89,7 +90,10 @@ const generateOption = (option, backgroundColor) => ({
 export default () => {
   const [data, setData] = useState(
     rouletteData.map((o) =>
-      generateOption(o, o === '喝酒' ? defaultColors[1] : defaultColors[0])
+      generateOption(
+        o,
+        o !== '指定一个人' ? defaultColors[1] : defaultColors[0]
+      )
     )
   );
   const [spinNow, setSpinNow] = useState(false);
