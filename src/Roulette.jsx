@@ -17,6 +17,7 @@ export default ({ rouletteData, spinNow, setSpinBack }) => {
         radiusLineColor='#30475e'
         outerBorderWidth='4'
         radiusLineWidth='3'
+        fontSize='16'
       />
     </WheelWrapper>
   );

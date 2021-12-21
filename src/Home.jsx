@@ -55,29 +55,55 @@ const InputGroup = styled.div`
 `;
 
 const rouletteData = [
-  '1. 喝酒',
-  '2. 喝酒',
-  '3. 喝酒',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '10',
+  '11',
+  '12',
+  '13',
+  '14',
+  '15',
+  '喝酒',
+  '喝酒',
+  '喝酒',
   '指定一个人',
-  '4. 喝酒',
-  '5. 喝酒',
-  '6. 喝酒',
+  '喝酒',
+  '喝酒',
+  '喝酒',
   '指定一个人',
-  '7. 喝酒',
-  '8. 喝酒',
-  '9. 喝酒',
+  '喝酒',
+  '喝酒',
+  '喝酒',
   '指定一个人',
-  '10. 喝酒',
-  '11. 喝酒',
-  '12. 喝酒',
+  '喝酒',
+  '喝酒',
+  '喝酒',
   '指定一个人',
-  '13. 喝酒',
-  '14. 喝酒',
-  '15. 喝酒',
+  '喝酒',
+  '喝酒',
+  '喝酒',
   '指定一个人',
 ];
 
 const defaultColors = ['#F05454', '#7CD1B8', '#6998AB'];
+
+const pickColor = (text) => {
+  console.log(typeof text);
+  if (text === '喝酒') {
+    return defaultColors[1];
+  } else if (text === '指定一个人') {
+    return defaultColors[0];
+  } else {
+    return defaultColors[2];
+  }
+};
 
 const generateOption = (option, backgroundColor) => ({
   option,
@@ -89,12 +115,7 @@ const generateOption = (option, backgroundColor) => ({
 
 export default () => {
   const [data, setData] = useState(
-    rouletteData.map((o) =>
-      generateOption(
-        o,
-        o !== '指定一个人' ? defaultColors[1] : defaultColors[0]
-      )
-    )
+    rouletteData.map((o) => generateOption(o, pickColor(o)))
   );
   const [spinNow, setSpinNow] = useState(false);
   const [labelValue, setLabelValue] = useState('');
