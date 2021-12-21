@@ -62,81 +62,6 @@ const LoadWrapper = styled.div`
       opacity: 0;
     }
   }
-
-  @-moz-keyframes move {
-    0% {
-      left: 0;
-      opacity: 0;
-    }
-    35% {
-      left: 41%;
-      -moz-transform: rotate(0deg);
-      transform: rotate(0deg);
-      opacity: 1;
-    }
-    65% {
-      left: 59%;
-      -moz-transform: rotate(0deg);
-      transform: rotate(0deg);
-      opacity: 1;
-    }
-    100% {
-      left: 100%;
-      -moz-transform: rotate(-180deg);
-      transform: rotate(-180deg);
-      opacity: 0;
-    }
-  }
-
-  @-webkit-keyframes move {
-    0% {
-      left: 0;
-      opacity: 0;
-    }
-    35% {
-      left: 41%;
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-      opacity: 1;
-    }
-    65% {
-      left: 59%;
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-      opacity: 1;
-    }
-    100% {
-      left: 100%;
-      -webkit-transform: rotate(-180deg);
-      transform: rotate(-180deg);
-      opacity: 0;
-    }
-  }
-
-  @-o-keyframes move {
-    0% {
-      left: 0;
-      opacity: 0;
-    }
-    35% {
-      left: 41%;
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg);
-      opacity: 1;
-    }
-    65% {
-      left: 59%;
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg);
-      opacity: 1;
-    }
-    100% {
-      left: 100%;
-      -o-transform: rotate(-180deg);
-      transform: rotate(-180deg);
-      opacity: 0;
-    }
-  }
 `;
 
 const Main = styled.div`
@@ -146,6 +71,7 @@ const Main = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: -1;
 `;
 
 export default () => (

@@ -42,6 +42,8 @@ const guestList = [
   '10. 查莉莉',
   '11. 爱丽丝',
   '12. Kathy',
+  '13. Kerwin',
+  '14. Heidi',
 ];
 export default () => (
   <Wrapper>
