@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import piggy from './assets/piggy.jpeg';
-import { Chip, Button, IconButton, TextField } from '@mui/material';
-import Shuffle from '@mui/icons-material/Shuffle';
+import { Chip, IconButton, TextField } from '@mui/material';
 import Cancel from '@mui/icons-material/Cancel';
-import AutoRenew from '@mui/icons-material/Autorenew';
 import Send from '@mui/icons-material/Send';
 import Roulette from './Roulette';
 import { CirclePicker } from 'react-color';
@@ -42,66 +40,62 @@ const GameSection = styled.div`
   align-items: center;
 `;
 
-const ButtonGroup = styled.div`
-  width: 300px;
-  margin: 20px;
-  display: flex;
-  justify-content: space-evenly;
-`;
-
 const InputGroup = styled.div`
   margin: 20px;
   display: flex;
+  width: 400px;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
 const rouletteData = [
+  '1. 喝酒',
   '1',
+  '1. 指定一个人',
   '2',
+  '2. 喝酒',
   '3',
+  '3. 喝酒',
   '4',
+  '2. 指定一个人',
   '5',
+  '4. 喝酒',
   '6',
+  '5. 喝酒',
   '7',
+  '6. 喝酒',
+  '3. 指定一个人',
   '8',
+  '7. 喝酒',
   '9',
+  '8. 喝酒',
   '10',
+  '9. 喝酒',
   '11',
+  '10. 喝酒',
+  '4. 指定一个人',
+  '11. 喝酒',
   '12',
+  '12. 喝酒',
   '13',
+  '13. 喝酒',
   '14',
+  '14. 喝酒',
+  '5. 指定一个人',
+  '15. 喝酒',
   '15',
-  '喝酒',
-  '喝酒',
-  '喝酒',
-  '指定一个人',
-  '喝酒',
-  '喝酒',
-  '喝酒',
-  '指定一个人',
-  '喝酒',
-  '喝酒',
-  '喝酒',
-  '指定一个人',
-  '喝酒',
-  '喝酒',
-  '喝酒',
-  '指定一个人',
-  '喝酒',
-  '喝酒',
-  '喝酒',
-  '指定一个人',
 ];
 
 const defaultColors = ['#F05454', '#7CD1B8', '#6998AB'];
 
 const pickColor = (text) => {
-  console.log(typeof text);
-  if (text === '喝酒') {
-    return defaultColors[1];
-  } else if (text === '指定一个人') {
-    return defaultColors[0];
-  } else {
-    return defaultColors[2];
+  switch (text.split(' ')[1]) {
+    case '指定一个人':
+      return defaultColors[1];
+    case '喝酒':
+      return defaultColors[0];
+    default:
+      return defaultColors[2];
   }
 };
 
@@ -117,7 +111,6 @@ export default () => {
   const [data, setData] = useState(
     rouletteData.map((o) => generateOption(o, pickColor(o)))
   );
-  const [spinNow, setSpinNow] = useState(false);
   const [labelValue, setLabelValue] = useState('');
   const [pickedColor, setPickedColor] = useState('#7CD1B8');
 
@@ -133,51 +126,21 @@ export default () => {
     }
   };
 
-  // Function to shuffle array
-  const shuffle = (orgArr) => {
-    let arr = orgArr.slice();
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  };
-
   return (
     <Wrapper>
       <h2> Welcome to 200 Spencer St New Year Party </h2>
       <ImgWrapper src={piggy} alt='piggy.jpg' />
 
       <GameSection>
-        <ButtonGroup>
-          <Button
-            variant='outlined'
-            onClick={() => setSpinNow(true)}
-            startIcon={<AutoRenew />}
-          >
-            Spin
-          </Button>
-          <Button
-            variant='outlined'
-            onClick={() => setData(shuffle(data))}
-            endIcon={<Shuffle />}
-          >
-            Shuffle
-          </Button>
-        </ButtonGroup>
-        <Roulette
-          rouletteData={data}
-          spinNow={spinNow}
-          setSpinBack={() => setSpinNow(false)}
-        />
+        <Roulette rouletteData={data} setRouletteData={setData} />
       </GameSection>
 
       <InputGroup>
         <CirclePicker
+          width='150px'
           colors={defaultColors}
           defaultColors={pickedColor}
           onChange={(e) => setPickedColor(e.hex)}
-          onC
         />
         <TextField
           label='Enter Label'
