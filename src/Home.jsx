@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import piggy from './assets/piggy.jpeg';
-import { Chip, Button, IconButton } from '@mui/material';
-import CardGiftcard from '@mui/icons-material/CardGiftcard';
-import DeleteIcon from '@mui/icons-material/DeleteOutline';
+import { Chip, Button, IconButton, TextField } from '@mui/material';
+import Shuffle from '@mui/icons-material/Shuffle';
+import Cancel from '@mui/icons-material/Cancel';
+import AutoRenew from '@mui/icons-material/Autorenew';
+import Send from '@mui/icons-material/Send';
+import Roulette from './Roulette';
+import { CirclePicker } from 'react-color';
 
 const Wrapper = styled.div`
   background-color: #f5f5f5;
@@ -25,7 +29,7 @@ const ImgWrapper = styled.img`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;
 
-const GuestList = styled.div`
+const LabelLists = styled.div`
   div {
     margin: 2px;
   }
@@ -35,54 +39,74 @@ const GameSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
-`;
-
-const SecretSanta = styled.div`
-  width: 100%;
-  margin-top: 20px;
-  div {
-    margin: 2px;
-  }
 `;
 
 const ButtonGroup = styled.div`
-  width: 200px;
+  width: 300px;
+  margin: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 `;
 
-const guestList = [
-  'Angel Song',
-  'Qianru',
-  'Jac',
-  '徐+×',
-  'Jasmine',
-  'Alex',
-  'Vincent',
-  '阿曼达',
-  'Bill',
-  '查莉莉',
-  '爱丽丝',
-  'Kathy',
-  'Kerwin',
-  'Heidi',
+const InputGroup = styled.div`
+  margin: 20px;
+  display: flex;
+`;
+
+const rouletteData = [
+  '喝酒',
+  '喝酒',
+  '喝酒',
+  '指定一个人',
+  '喝酒',
+  '喝酒',
+  '喝酒',
+  '指定一个人',
+  '喝酒',
+  '喝酒',
+  '喝酒',
+  '指定一个人',
+  '喝酒',
+  '喝酒',
+  '喝酒',
+  '指定一个人',
+  '喝酒',
+  '喝酒',
+  '指定一个人',
 ];
 
-export default () => {
-  const [pairs, setPairs] = useState([]);
+const defaultColors = ['#F05454', '#7CD1B8', '#6998AB'];
 
-  const pair = (arr) => {
-    const randomNames = shuffle(arr);
-    // Match each person with the next one, folding over at the end
-    const matches = randomNames.map((name, index) => {
-      return {
-        sender: name,
-        receiver: randomNames[index + 1] || randomNames[0],
-      };
-    });
-    setPairs(shuffle(matches));
+const generateOption = (option, backgroundColor) => ({
+  option,
+  style: {
+    backgroundColor,
+    textColor: '#30475e',
+  },
+});
+
+export default () => {
+  const [data, setData] = useState(
+    rouletteData.map((o) =>
+      generateOption(o, o === '喝酒' ? defaultColors[1] : defaultColors[0])
+    )
+  );
+  const [spinNow, setSpinNow] = useState(false);
+  const [labelValue, setLabelValue] = useState('');
+  const [pickedColor, setPickedColor] = useState('#7CD1B8');
+
+  const deleteLabel = (index) => {
+    setData(data.filter((_, i) => i !== index));
   };
+
+  const confirmLabelValue = () => {
+    if (labelValue.trim()) {
+      setData([...data, generateOption(labelValue.trim(), pickedColor)]);
+      setLabelValue('');
+      setPickedColor(defaultColors[1]);
+    }
+  };
+
   // Function to shuffle array
   const shuffle = (orgArr) => {
     let arr = orgArr.slice();
@@ -97,38 +121,70 @@ export default () => {
     <Wrapper>
       <h1> Welcome to 200 Spencer St New Year Party </h1>
       <ImgWrapper src={piggy} alt='piggy.jpg' />
-      <h2> Guest List</h2>
-      <GuestList>
-        {guestList.map((name, index) => (
-          <Chip key={name} label={`${index + 1}. ${name}`} variant='outlined' />
-        ))}
-      </GuestList>
+
       <GameSection>
         <ButtonGroup>
           <Button
             variant='outlined'
-            onClick={() => pair(guestList)}
-            startIcon={<CardGiftcard />}
+            onClick={() => setSpinNow(true)}
+            startIcon={<AutoRenew />}
           >
-            Swap Gift
+            Spin
           </Button>
-          <IconButton
-            color='primary'
-            aria-label='delete list'
-            onClick={() => setPairs([])}
+          <Button
+            variant='outlined'
+            onClick={() => setData(shuffle(data))}
+            endIcon={<Shuffle />}
           >
-            <DeleteIcon />
-          </IconButton>
+            Shuffle
+          </Button>
         </ButtonGroup>
-        <SecretSanta>
-          {pairs.map((obj) => (
-            <Chip
-              key={obj.sender + '_' + obj.receiver}
-              label={`${obj.sender} -> ${obj.receiver}`}
-            />
-          ))}
-        </SecretSanta>
+        <Roulette
+          rouletteData={data}
+          spinNow={spinNow}
+          setSpinBack={() => setSpinNow(false)}
+        />
       </GameSection>
+
+      <InputGroup>
+        <CirclePicker
+          colors={defaultColors}
+          defaultColors={pickedColor}
+          onChange={(e) => setPickedColor(e.hex)}
+          onC
+        />
+        <TextField
+          label='Enter Label'
+          id='outlined-size-small'
+          variant='outlined'
+          color='primary'
+          size='small'
+          value={labelValue}
+          onChange={(e) => setLabelValue(e.target.value)}
+        />
+
+        <IconButton
+          color='primary'
+          aria-label='confirm label'
+          onClick={confirmLabelValue}
+          component='span'
+        >
+          <Send />
+        </IconButton>
+      </InputGroup>
+      <LabelLists>
+        {data.map((obj, index) => (
+          <Chip
+            sx={{ color: obj.style.backgroundColor }}
+            label='small'
+            key={`${index}+${obj.option}`}
+            label={`${obj.option}`}
+            deleteIcon={<Cancel />}
+            variant='outlined'
+            onDelete={() => deleteLabel(index)}
+          />
+        ))}
+      </LabelLists>
     </Wrapper>
   );
 };

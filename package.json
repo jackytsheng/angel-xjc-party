@@ -11,10 +11,13 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "react": "^17.0.2",
+    "react-color": "^2.19.3",
+    "react-custom-roulette": "^1.1.8",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
     "styled-components": "^5.3.3",
-    "web-vitals": "^2.1.2"
+    "web-vitals": "^2.1.2",
+    "yarn": "^1.22.17"
   },
   "homepage": "https://jackytsheng.github.io/angel-xjc-party/",
   "scripts": {
