@@ -20,7 +20,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 const ImgWrapper = styled.img`
@@ -119,7 +120,7 @@ export default () => {
 
   return (
     <Wrapper>
-      <h1> Welcome to 200 Spencer St New Year Party </h1>
+      <h2> Welcome to 200 Spencer St New Year Party </h2>
       <ImgWrapper src={piggy} alt='piggy.jpg' />
 
       <GameSection>
