@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import piggy from './assets/piggy.jpeg';
 import { Chip } from '@mui/material';
+
 const Wrapper = styled.div`
   background-color: #f5f5f5;
   position: fixed;
@@ -22,8 +23,7 @@ const ImgWrapper = styled.img`
 `;
 
 const GuestList = styled.div`
-  width: 450px;
-  height: 800px;
+  width: 100%;
 
   div {
     margin: 5px;
