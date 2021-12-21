@@ -15,6 +15,7 @@
     "styled-components": "^5.3.3",
     "web-vitals": "^2.1.2"
   },
+  "homepage": "https://jackytsheng.github.io/angel-xjc-party/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
