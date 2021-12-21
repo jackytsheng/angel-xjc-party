@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import piggy from './assets/piggy.jpeg';
-import { Chip } from '@mui/material';
+import { Chip, Button } from '@mui/material';
+import CardGiftcard from '@mui/icons-material/CardGiftcard';
 
 const Wrapper = styled.div`
   background-color: #f5f5f5;
@@ -26,34 +27,93 @@ const GuestList = styled.div`
   width: 100%;
 
   div {
-    margin: 5px;
+    margin: 2px;
   }
 `;
+
+const GameSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+`;
+
+const SecretSanta = styled.div`
+  width: 100%;
+  margin-top: 20px;
+  div {
+    margin: 2px;
+  }
+`;
+
 const guestList = [
-  '1. Angel Song',
-  '2. Qianru',
-  '3. Jac',
-  '4. 徐+×',
-  '5. Jasmine',
-  '6. Alex',
-  '7. Vincent',
-  '8. 阿曼达',
-  '9. Bill',
-  '10. 查莉莉',
-  '11. 爱丽丝',
-  '12. Kathy',
-  '13. Kerwin',
-  '14. Heidi',
+  'Angel Song',
+  'Qianru',
+  'Jac',
+  '徐+×',
+  'Jasmine',
+  'Alex',
+  'Vincent',
+  '阿曼达',
+  'Bill',
+  '查莉莉',
+  '爱丽丝',
+  'Kathy',
+  'Kerwin',
+  'Heidi',
 ];
-export default () => (
-  <Wrapper>
-    <h1> Welcome to 200 Spencer St New Year Party </h1>
-    <ImgWrapper src={piggy} alt='piggy.jpg' />
-    <h2> Guest List</h2>
-    <GuestList>
-      {guestList.map((name) => (
-        <Chip key={name} label={name} variant='outlined' />
-      ))}
-    </GuestList>
-  </Wrapper>
-);
+
+export default () => {
+  const [pairs, setPairs] = useState([]);
+
+  const pair = (arr) => {
+    const randomNames = shuffle(arr);
+    // Match each person with the next one, folding over at the end
+    const matches = randomNames.map((name, index) => {
+      return {
+        sender: name,
+        receiver: randomNames[index + 1] || randomNames[0],
+      };
+    });
+    setPairs(shuffle(matches));
+  };
+  // Function to shuffle array
+  const shuffle = (orgArr) => {
+    let arr = orgArr.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  };
+
+  return (
+    <Wrapper>
+      <h1> Welcome to 200 Spencer St New Year Party </h1>
+      <ImgWrapper src={piggy} alt='piggy.jpg' />
+      <h2> Guest List</h2>
+      <GuestList>
+        {guestList.map((name, index) => (
+          <Chip key={name} label={`${index + 1}. ${name}`} variant='outlined' />
+        ))}
+      </GuestList>
+      <GameSection>
+        <Button
+          variant='outlined'
+          onClick={() => pair(guestList)}
+          startIcon={<CardGiftcard />}
+        >
+          Secret Santa
+        </Button>
+        <SecretSanta>
+          {pairs.map((obj) => (
+            <Chip
+              key={obj.sender + '_' + obj.receiver}
+              label={`${obj.sender} -> ${obj.receiver}`}
+            />
+          ))}
+        </SecretSanta>
+      </GameSection>
+    </Wrapper>
+  );
+};
