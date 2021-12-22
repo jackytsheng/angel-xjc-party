@@ -5,7 +5,7 @@ import { Chip, IconButton, TextField } from '@mui/material';
 import Cancel from '@mui/icons-material/Cancel';
 import Send from '@mui/icons-material/Send';
 import Roulette from './Roulette';
-import { CirclePicker } from 'react-color';
+import { CirclePicker as Circle } from 'react-color';
 import colors from './colors';
 
 const Wrapper = styled.div`
@@ -58,6 +58,22 @@ const ImgWrapper = styled.img`
 const LabelLists = styled.div`
   div {
     margin: 2px;
+  }
+`;
+const CirclePicker = styled(Circle)`
+  span div span div {
+    border: none;
+  }
+  span:nth-child(${(props) => {
+        console.log(props.selectedColorPosition);
+        return props.selectedColorPosition;
+      }})
+    div
+    span
+    div {
+    box-sizing: border-box;
+    border: 3px ${colors.BROWN} solid;
+    transition: border 20ms linear, box-shadow 100ms ease 0s !important;
   }
 `;
 
@@ -162,10 +178,11 @@ export default () => {
 
       <InputGroup>
         <CirclePicker
+          selectedColorPosition={defaultColors.indexOf(pickedColor) + 1}
           width='150px'
           colors={defaultColors}
           defaultColors={pickedColor}
-          onChange={(e) => setPickedColor(e.hex)}
+          onChange={(e) => setPickedColor(e.hex.toUpperCase())}
         />
         <TextField
           label='Enter Label'
@@ -174,7 +191,11 @@ export default () => {
           color='primary'
           size='small'
           sx={{
-            '& .Mui-focused, & .Mui-focused .MuiOutlinedInput-notchedOutline': {
+            '& .Mui-focused': {
+              color: colors.BROWN,
+              borderColor: colors.BROWN,
+            },
+            '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
               color: colors.BROWN,
               borderColor: colors.BROWN,
             },
