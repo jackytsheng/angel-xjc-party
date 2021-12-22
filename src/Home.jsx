@@ -61,9 +61,6 @@ const LabelLists = styled.div`
   }
 `;
 const CirclePicker = styled(Circle)`
-  span div span div {
-    border: none;
-  }
   span:nth-child(${(props) => {
         console.log(props.selectedColorPosition);
         return props.selectedColorPosition;
@@ -73,7 +70,6 @@ const CirclePicker = styled(Circle)`
     div {
     box-sizing: border-box;
     border: 3px ${colors.BROWN} solid;
-    transition: border 20ms linear, box-shadow 100ms ease 0s !important;
   }
 `;
 
