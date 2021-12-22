@@ -89,46 +89,48 @@ const InputGroup = styled.div`
 const rouletteData = [
   '1. 喝酒',
   '1',
-  '1. 指定一个人',
+  '1. 指定',
   '2',
   '2. 喝酒',
   '3',
   '3. 喝酒',
   '4',
-  '2. 指定一个人',
+  '2. 指定',
   '5',
   '4. 喝酒',
   '6',
   '5. 喝酒',
   '7',
   '6. 喝酒',
-  '3. 指定一个人',
+  '3. 指定',
   '8',
   '7. 喝酒',
   '9',
   '8. 喝酒',
   '10',
   '9. 喝酒',
-  '11',
+  '4. 指定',
   '10. 喝酒',
-  '4. 指定一个人',
+  '11',
   '11. 喝酒',
   '12',
   '12. 喝酒',
   '13',
   '13. 喝酒',
-  '14',
+  '5. 指定',
   '14. 喝酒',
-  '5. 指定一个人',
+  '14',
   '15. 喝酒',
   '15',
+  '16. 喝酒',
+  '16',
 ];
 
 const defaultColors = [colors.RED, colors.GREEN, colors.YELLOW];
 
 const pickColor = (text) => {
   switch (text.split(' ')[1]) {
-    case '指定一个人':
+    case '指定':
       return defaultColors[1];
     case '喝酒':
       return defaultColors[0];
