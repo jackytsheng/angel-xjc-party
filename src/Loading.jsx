@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import colors from './colors';
 
 const LoadWrapper = styled.div`
   position: absolute;
@@ -19,7 +20,7 @@ const LoadWrapper = styled.div`
     font-family: Helvetica, Arial, sans-serif;
     animation: move 2s linear infinite;
     transform: rotate(180deg);
-    color: #35c4f0;
+    color: ${colors.DARK};
   }
 
   div:nth-child(2) {
@@ -65,7 +66,7 @@ const LoadWrapper = styled.div`
 `;
 
 const Main = styled.div`
-  background-color: #121212;
+  background-color: ${colors.BACK_GROUND};
   position: fixed;
   top: 0;
   bottom: 0;

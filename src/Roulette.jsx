@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Shuffle from '@mui/icons-material/Shuffle';
 import AutoRenew from '@mui/icons-material/Autorenew';
 import Delete from '@mui/icons-material/Delete';
+import colors from './colors';
 
 const WheelWrapper = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ const WheelWrapper = styled.div`
 `;
 
 const ButtonGroup = styled.div`
-  width: 400px;
+  width: 100%;
   margin: 20px;
   display: flex;
   justify-content: space-evenly;
@@ -46,6 +47,11 @@ export default ({ rouletteData, setRouletteData }) => {
           variant='outlined'
           onClick={handleSpinClick}
           startIcon={<AutoRenew />}
+          sx={{
+            '& .MuiButtonBase-root-MuiButton-root': {
+              color: 'black',
+            },
+          }}
         >
           Spin
         </Button>
@@ -77,11 +83,14 @@ export default ({ rouletteData, setRouletteData }) => {
         prizeNumber={prizeNumber}
         onStopSpinning={() => setMustSpin(false)}
         data={rouletteData}
-        textColors={['#30475e']}
-        outerBorderColor='#30475e'
-        radiusLineColor='#30475e'
-        outerBorderWidth='4'
-        radiusLineWidth='3'
+        textColors={[colors.BROWN]}
+        backgroundColors={[colors.RED, colors.YELLOW]}
+        outerBorderColor={colors.DARK}
+        radiusLineColor={colors.DARK}
+        outerBorderWidth='15'
+        innerBorderWidth='20'
+        innerBorderColor={colors.DARK}
+        radiusLineWidth='1'
         textDistance='70'
         fontSize='16'
       />

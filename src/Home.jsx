@@ -6,9 +6,10 @@ import Cancel from '@mui/icons-material/Cancel';
 import Send from '@mui/icons-material/Send';
 import Roulette from './Roulette';
 import { CirclePicker } from 'react-color';
+import colors from './colors';
 
 const Wrapper = styled.div`
-  background-color: #f5f5f5;
+  background-color: ${colors.BACK_GROUND};
   position: fixed;
   top: 0;
   bottom: 0;
@@ -20,6 +21,32 @@ const Wrapper = styled.div`
   padding: 20px;
   overflow-y: auto;
   overflow-x: hidden;
+
+  h2 {
+    color: ${colors.BROWN};
+    font-family: 'Pushster', cursive;
+  }
+
+  .MuiButton-outlinedPrimary,
+  .MuiIconButton-colorPrimary {
+    color: ${colors.BROWN};
+    border-color: ${colors.BROWN + '80'};
+
+    :hover {
+      border-color: ${colors.BROWN};
+
+      background-color: ${colors.BROWN + '0a'};
+    }
+  }
+  .MuiButton-outlinedError {
+    color: ${colors.BRIGHT_RED};
+    border-color: ${colors.BRIGHT_RED + '80'};
+
+    :hover {
+      border-color: ${colors.BRIGHT_RED};
+      background-color: ${colors.BRIGHT_RED + '0a'};
+    }
+  }
 `;
 
 const ImgWrapper = styled.img`
@@ -43,7 +70,6 @@ const GameSection = styled.div`
 const InputGroup = styled.div`
   margin: 20px;
   display: flex;
-  width: 400px;
   justify-content: space-evenly;
   align-items: center;
 `;
@@ -86,7 +112,7 @@ const rouletteData = [
   '15',
 ];
 
-const defaultColors = ['#F05454', '#7CD1B8', '#6998AB'];
+const defaultColors = [colors.RED, colors.GREEN, colors.YELLOW];
 
 const pickColor = (text) => {
   switch (text.split(' ')[1]) {
@@ -103,7 +129,6 @@ const generateOption = (option, backgroundColor) => ({
   option,
   style: {
     backgroundColor,
-    textColor: '#30475e',
   },
 });
 
@@ -112,7 +137,7 @@ export default () => {
     rouletteData.map((o) => generateOption(o, pickColor(o)))
   );
   const [labelValue, setLabelValue] = useState('');
-  const [pickedColor, setPickedColor] = useState('#7CD1B8');
+  const [pickedColor, setPickedColor] = useState(colors.GREEN);
 
   const deleteLabel = (index) => {
     setData(data.filter((_, i) => i !== index));
@@ -148,6 +173,12 @@ export default () => {
           variant='outlined'
           color='primary'
           size='small'
+          sx={{
+            '& .Mui-focused, & .Mui-focused .MuiOutlinedInput-notchedOutline': {
+              color: colors.BROWN,
+              borderColor: colors.BROWN,
+            },
+          }}
           value={labelValue}
           onChange={(e) => setLabelValue(e.target.value)}
         />
@@ -164,7 +195,11 @@ export default () => {
       <LabelLists>
         {data.map((obj, index) => (
           <Chip
-            sx={{ color: obj.style.backgroundColor }}
+            sx={{
+              backgroundColor: obj.style.backgroundColor,
+              color: colors.BROWN,
+              fontWeight: 600,
+            }}
             label='small'
             key={`${index}+${obj.option}`}
             label={`${obj.option}`}

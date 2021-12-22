@@ -7,7 +7,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoadState(false);
-    }, 3000);
+    }, 2500);
   }, []);
 
   return loadState ? <Loading /> : <Home />;
