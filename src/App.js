@@ -7,10 +7,15 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoadState(false);
-    }, 2500);
+    }, 3000);
   }, []);
 
-  return loadState ? <Loading /> : <Home />;
+  return (
+    <>
+      {loadState ? <Loading /> : <></>}
+      <Home />
+    </>
+  );
 };
 
 export default App;
