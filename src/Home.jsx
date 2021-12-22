@@ -188,12 +188,11 @@ export default () => {
           size='small'
           sx={{
             '& .Mui-focused': {
-              color: colors.BROWN,
-              borderColor: colors.BROWN,
+              color: colors.BROWN + ' !important',
+              borderColor: colors.BROWN + ' !important',
             },
             '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
-              color: colors.BROWN,
-              borderColor: colors.BROWN,
+              borderColor: colors.BROWN + ' !important',
             },
           }}
           value={labelValue}
