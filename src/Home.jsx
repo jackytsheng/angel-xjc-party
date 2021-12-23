@@ -93,8 +93,8 @@ const CopyRight = styled.p`
 `;
 
 const rouletteData = [
-  '1. 指定',
   '1',
+  '1. 指定',
   '1. 喝酒',
   '2',
   '2. 喝酒',
@@ -130,6 +130,11 @@ const rouletteData = [
   '15',
   '16. 喝酒',
   '16',
+  '6. 指定',
+  '17',
+  '17. 喝酒',
+  '18',
+  '18. 喝酒',
 ];
 
 const defaultColors = [colors.RED, colors.GREEN, colors.YELLOW];
