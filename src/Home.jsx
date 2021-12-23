@@ -85,6 +85,12 @@ const InputGroup = styled.div`
   justify-content: space-evenly;
   align-items: center;
 `;
+const CopyRight = styled.p`
+  margin-top: 2rem;
+  font-size: 0.7rem;
+  color: ${colors.BROWN};
+  font-weight: 600;
+`;
 
 const rouletteData = [
   '1. 喝酒',
@@ -227,6 +233,10 @@ export default () => {
           />
         ))}
       </LabelLists>
+
+      <CopyRight>
+        Copyright &copy; 2022 Jiajin Zheng. All rights reserved.
+      </CopyRight>
     </Wrapper>
   );
 };
