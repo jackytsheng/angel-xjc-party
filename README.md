@@ -2,7 +2,7 @@
 
 Super awesome for party game
 
-![spinning wheel](/img/demo.png)
+<img width="250px" src='./img/demo.png' alt  = 'spinning wheel'/>
 
 [**Check it out Roulette**](https://jackytsheng.github.io/angel-xjc-party/)
 
