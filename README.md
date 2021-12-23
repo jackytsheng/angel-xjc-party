@@ -4,6 +4,7 @@ Super awesome for party game
 
 <img width="250px" src='./img/demo.png' alt  = 'spinning wheel'/>
 
+<img width="250px" src='./img/demo2.png' alt  = 'spinning wheel'/>
 [**Checkout Roulette**](https://jackytsheng.github.io/angel-xjc-party/)
 
 ## Features
