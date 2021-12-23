@@ -135,6 +135,8 @@ const rouletteData = [
   '17. 喝酒',
   '18',
   '18. 喝酒',
+  '19.',
+  '19. 喝酒',
 ];
 
 const defaultColors = [colors.RED, colors.GREEN, colors.YELLOW];
