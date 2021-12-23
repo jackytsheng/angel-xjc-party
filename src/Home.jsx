@@ -93,9 +93,9 @@ const CopyRight = styled.p`
 `;
 
 const rouletteData = [
-  '1. 喝酒',
-  '1',
   '1. 指定',
+  '1',
+  '1. 喝酒',
   '2',
   '2. 喝酒',
   '3',
